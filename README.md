@@ -7,7 +7,8 @@
 
 ## Introduction
 
-This project is a URL shortener application built using FastAPI. It allows users to shorten long URLs, track clicks, and manage the shortened URLs via an admin interface.
+This project is a URL shortener application built using FastAPI. 
+It allows users to shorten long URLs, track clicks, and manage the shortened URLs via an admin interface.
 
 ## Installation
 
