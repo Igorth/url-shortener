@@ -2,7 +2,6 @@
 
 ![Python Version](https://img.shields.io/badge/python-3.9+-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.70.0-green)
-![Build](https://img.shields.io/github/actions/workflow/status/Igorth/url-shortener/build.yml)
 ![Last Commit](https://img.shields.io/github/last-commit/Igorth/url-shortener)
 
 ## Introduction
