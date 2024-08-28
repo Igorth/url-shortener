@@ -1,6 +1,8 @@
 import validators
 from fastapi import FastAPI, HTTPException, Depends, Request
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from . import schemas, models, crud
 from .database import SessionLocal, engine
@@ -10,6 +12,13 @@ from .config import get_settings
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
+
+
+# Mount static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Set up Jinja2 templates
+templates = Jinja2Templates(directory="templates")
 
 
 def get_db():
@@ -39,9 +48,9 @@ def raise_not_found(request):
     raise HTTPException(status_code=404, detail=message)
 
 
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to URL Shortener!"}
+@app.get("/", response_class=HTMLResponse)
+def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.post("/url", response_model=schemas.URLInfo)
